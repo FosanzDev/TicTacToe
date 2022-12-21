@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class TicTacToe {
     public static char[][] tablero;
-    public final static int DIMENSION = 4;
+    public final static int DIMENSION = 3;
     public static int toeCount = 0;
 
     public static void main(String[] args) {
@@ -60,6 +60,8 @@ public class TicTacToe {
 
             else
                 System.out.println("Es un empate!");
+            
+            toeCount = 0;
 
             GameMechanics.newGame();
 

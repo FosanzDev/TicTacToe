@@ -59,16 +59,12 @@ public class GameMechanics {
             for (int c = 0; c < DIMENSION; c++) {
                 char usr = tablero[r][c];
 
-                if (usr == ficha) {
-                    if (count == times-1)
-                        return true;
-                    else
-                        count++;
-                }
-
-                else
-                    count = 0;
+                if (usr == ficha)
+                    count++;
             }
+            if(count==DIMENSION)
+                return true;
+
             count = 0;
         }
 
@@ -78,16 +74,14 @@ public class GameMechanics {
             for (int r = 0; r < DIMENSION; r++) {
                 char usr = tablero[r][c];
 
-                if (usr == ficha) {
-                    if (count == 2)
-                        return true;
-                    else
-                        count++;
-                }
-
-                else
-                    count = 0;
+                if (usr == ficha)
+                    count++;
             }
+
+            if (count == DIMENSION)
+                return true;
+            
+            count = 0;
         }
 
 
