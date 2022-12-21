@@ -3,8 +3,7 @@ import java.util.Arrays;
 public class GameMechanics {
 
     private static char[][] tablero = TicTacToe.tablero;
-    private final static int FILAS = TicTacToe.FILAS;
-    private final static int COLUMNAS = TicTacToe.COLUMNAS;
+    private final static int DIMENSION = TicTacToe.DIMENSION;
 
     /**
      * Clears the board
@@ -27,13 +26,14 @@ public class GameMechanics {
             throw new Exception();
 
         tablero[r][c] = usr ? 'x' : 'o';
+        TicTacToe.toeCount++;
     }
 
     /**
      * Prints actual Board
      */
     public static void printBoard() {
-        System.out.println(Utils.multiplyString(" _", COLUMNAS));
+        System.out.println(Utils.multiplyString(" _", DIMENSION));
         for (char[] r : tablero) {
             System.out.print("|");
             for (char c : r) {
@@ -50,17 +50,17 @@ public class GameMechanics {
      * @param ficha char with the selected value
      * @return true/false depending if <code>ficha</code> has won
      */
-    public static boolean checkWin(char ficha) {
+    public static boolean checkWin(char ficha, int times) {
         int count = 0;
 
         // Check Lines
 
-        for (int r = 0; r < FILAS; r++) {
-            for (int c = 0; c < COLUMNAS; c++) {
+        for (int r = 0; r < DIMENSION; r++) {
+            for (int c = 0; c < DIMENSION; c++) {
                 char usr = tablero[r][c];
 
                 if (usr == ficha) {
-                    if (count == 2)
+                    if (count == times-1)
                         return true;
                     else
                         count++;
@@ -74,8 +74,8 @@ public class GameMechanics {
 
         // Check Columns
 
-        for (int c = 0; c < COLUMNAS; c++) {
-            for (int r = 0; r < FILAS; r++) {
+        for (int c = 0; c < DIMENSION; c++) {
+            for (int r = 0; r < DIMENSION; r++) {
                 char usr = tablero[r][c];
 
                 if (usr == ficha) {
@@ -90,7 +90,23 @@ public class GameMechanics {
             }
         }
 
-        return false;
+
+        //Checking diagonals
+
+        int countDiag1 = 0;
+        int countDiag2 = 0;
+
+        //Checking Top-Left to Bottom-Right
+        for(int i=0; i<DIMENSION; i++){
+            if (tablero[i][i] == ficha)
+                countDiag1++;
+
+            if (tablero[i][DIMENSION - i - 1] == ficha)
+                countDiag2++;
+        }
+
+        return countDiag1 == DIMENSION || countDiag2 == DIMENSION;
+
     }
 
     /**
@@ -99,7 +115,7 @@ public class GameMechanics {
      * @param turn <code>true/false -- 'x'/'o'</code> respectively
      * @return if <code>turn</code> won or not;
      */
-    public static boolean checkWin(boolean turn) {
-        return checkWin(turn ? 'x' : 'o');
+    public static boolean checkWin(boolean turn, int times) {
+        return checkWin(turn ? 'x' : 'o', times);
     }
 }

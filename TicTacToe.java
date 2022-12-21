@@ -3,12 +3,12 @@ import java.util.Scanner;
 
 public class TicTacToe {
     public static char[][] tablero;
-    public final static int FILAS = 4;
-    public final static int COLUMNAS = 5;
+    public final static int DIMENSION = 4;
+    public static int toeCount = 0;
 
     public static void main(String[] args) {
         Scanner lector = new Scanner(System.in);
-        tablero = new char[FILAS][COLUMNAS];
+        tablero = new char[DIMENSION][DIMENSION];
 
         boolean continues;
         GameMechanics.newGame();
@@ -45,13 +45,21 @@ public class TicTacToe {
 
                 } while (error);
 
-                win = GameMechanics.checkWin(turn) || GameMechanics.checkWin(!turn);
+
+                if(toeCount == DIMENSION*DIMENSION)
+                    break;
+
+                win = GameMechanics.checkWin(turn, DIMENSION);
                 turn = turn ? false : true;
             }
 
             GameMechanics.printBoard();
 
-            System.out.println("Han ganado las " + (!turn ? 'x' : 'o'));
+            if(win)
+                System.out.println("Han ganado las " + (!turn ? 'x' : 'o'));
+
+            else
+                System.out.println("Es un empate!");
 
             GameMechanics.newGame();
 
