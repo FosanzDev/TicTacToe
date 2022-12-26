@@ -1,4 +1,9 @@
+import java.util.Scanner;
+import java.util.InputMismatchException;
+
 public class Utils {
+
+    private static Scanner lector = MainMenu.lector;
 
     /**
      * Removes whitespaces and scape characters of a string
@@ -34,6 +39,32 @@ public class Utils {
             sb.append(s);
 
         return sb.toString();
+    }
+
+    /**
+     * Reads an integer with a personalized message
+     * 
+     * @param msj String with the message
+     * @return Validated integer
+     */
+    public static int readInt(String msj) {
+        int res = 0;
+        boolean valid;
+
+        do {
+            System.out.print(msj);
+            valid = true;
+            try {
+                res = lector.nextInt();
+                lector.nextLine();
+            } catch (InputMismatchException e) {
+                lector.nextLine();
+                System.out.println("Invalid Entry");
+                valid = false;
+            }
+        } while (!valid);
+
+        return res;
     }
 
 }

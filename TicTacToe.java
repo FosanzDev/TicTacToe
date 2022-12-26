@@ -5,9 +5,9 @@ public class TicTacToe {
     public static char[][] tablero;
     public final static int DIMENSION = 3;
     public static int toeCount = 0;
+    private static Scanner lector = MainMenu.lector;
 
-    public static void main(String[] args) {
-        Scanner lector = new Scanner(System.in);
+    public static void tictactoe() {
         tablero = new char[DIMENSION][DIMENSION];
 
         boolean continues;
@@ -45,8 +45,7 @@ public class TicTacToe {
 
                 } while (error);
 
-
-                if(toeCount == DIMENSION*DIMENSION)
+                if (toeCount == DIMENSION * DIMENSION)
                     break;
 
                 win = GameMechanics.checkWin(turn, DIMENSION);
@@ -55,12 +54,12 @@ public class TicTacToe {
 
             GameMechanics.printBoard();
 
-            if(win)
+            if (win)
                 System.out.println("Han ganado las " + (!turn ? 'x' : 'o'));
 
             else
                 System.out.println("Es un empate!");
-            
+
             toeCount = 0;
 
             GameMechanics.newGame();
@@ -70,6 +69,5 @@ public class TicTacToe {
 
         } while (continues);
 
-        lector.close();
     }
 }
