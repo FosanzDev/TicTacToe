@@ -2,8 +2,20 @@ import java.util.Arrays;
 
 public class GameMechanics {
 
-    private static char[][] tablero = TicTacToe.tablero;
-    private final static int DIMENSION = TicTacToe.DIMENSION;
+    public final static int DIMENSION = 3;
+    private final static char[][] tablero = new char[DIMENSION][DIMENSION];
+
+    public static String rules = """
+            Tic-Tac-Toe: 
+                Your objective is to perform 3 consecutive same marks 
+                vertically, horizontally or diagonally. Each player will
+                place a mark per turn only on non already chosen places.
+
+            Mine-Tac-Toe:
+                Same rules as Tic-Tac-Toe, but this time a bomb is added 
+                to the board!. If you tap on the bomb, you lose!
+            """;
+
 
     /**
      * Clears the board
@@ -21,11 +33,11 @@ public class GameMechanics {
      * @param c   Column
      * @param usr User (0 for o, 1 for x)
      */
-    public static void placeToe(int r, int c, boolean usr) throws Exception {
+    public static void placeToe(int r, int c, char mark) throws Exception {
         if (tablero[r][c] != ' ')
             throw new Exception();
 
-        tablero[r][c] = usr ? 'x' : 'o';
+        tablero[r][c] = mark;
         TicTacToe.toeCount++;
     }
 
@@ -103,13 +115,4 @@ public class GameMechanics {
 
     }
 
-    /**
-     * Checks if <code>turn</code> has won the game
-     * 
-     * @param turn <code>true/false -- 'x'/'o'</code> respectively
-     * @return if <code>turn</code> won or not;
-     */
-    public static boolean checkWin(boolean turn, int times) {
-        return checkWin(turn ? 'x' : 'o', times);
-    }
 }

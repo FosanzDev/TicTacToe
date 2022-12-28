@@ -67,4 +67,9 @@ public class Utils {
         return res;
     }
 
+    public static boolean readOption(String msj) {
+        System.out.print(msj);
+        return lector.nextLine().charAt(0) == 'y';
+    }
+
 }
