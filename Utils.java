@@ -67,6 +67,11 @@ public class Utils {
         return res;
     }
 
+    /**
+     * Reads and returns a true/false user statement
+     * @param msj Personalized request message
+     * @return boolean with the user selection
+     */
     public static boolean readOption(String msj) {
         System.out.print(msj);
         return lector.nextLine().charAt(0) == 'y';

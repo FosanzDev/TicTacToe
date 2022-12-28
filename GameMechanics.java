@@ -5,6 +5,9 @@ public class GameMechanics {
     public final static int DIMENSION = 3;
     private final static char[][] tablero = new char[DIMENSION][DIMENSION];
 
+    /**
+     * Prints the rules of all games
+     */
     public static String rules = """
             Tic-Tac-Toe: 
                 Your objective is to perform 3 consecutive same marks 

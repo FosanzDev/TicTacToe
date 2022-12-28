@@ -44,10 +44,9 @@ public class TicTacToe {
 
                 } while (error);
 
+                win = GameMechanics.checkWin(turn.getMark(), DIMENSION);
                 if (toeCount == DIMENSION * DIMENSION)
                     break;
-
-                win = GameMechanics.checkWin(turn.getMark(), DIMENSION);
             }
 
             GameMechanics.printBoard();
