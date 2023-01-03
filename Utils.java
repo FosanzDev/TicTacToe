@@ -12,7 +12,7 @@ public class Utils {
      * @return The clean String
      */
     public static String cleanString(String text) {
-        return text.trim().replaceAll("\\s+", " ");
+        return text.trim().replaceAll("\\s+", "");
     }
 
     /**
