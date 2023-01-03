@@ -3,7 +3,7 @@ public class TicTacToe {
     private final static int DIMENSION = GameMechanics.DIMENSION;
     public static int toeCount = 0;
 
-    public static void tictactoe(Player p1, Player p2) {
+    public static void tictactoe(Player p1, Player p2, boolean mines) {
 
         boolean continues;
         GameMechanics.newGame();
@@ -12,7 +12,12 @@ public class TicTacToe {
         do {
             continues = true;
             boolean win = false;
+            boolean mine = false;
             Player turn = p2;
+
+            if(mines){
+                GameMechanics.placeMines();
+            }
 
             // While no-one has won...
             while (!win) {
@@ -21,10 +26,16 @@ public class TicTacToe {
                 turn = turn == p1 ? p2 : p1;
 
                 // User request + toe placing
-                GameMechanics.placeToe("\nIntroduzca posicion deseada: [fila, columna]: ", turn.getMark());
+                mine = GameMechanics.placeToe("\nInput desired position: (row/column): ", turn.getMark(), mines);
+                
+                if (mine){
+                    win = true;
+                    turn = turn == p1 ? p2:p1;
+                    break;
+                }
+
                 // Draft counter increases per toe placed
                 toeCount++;
-
                 // Checks if the toe placed made a winning pattern
                 win = GameMechanics.checkWin(turn.getMark());
 
