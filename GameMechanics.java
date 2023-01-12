@@ -1,12 +1,14 @@
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.Random;
 
 public class GameMechanics {
 
+    public final static Random gen = new Random();
     public final static Scanner lector = MainMenu.lector;
     public final static int DIMENSION = 3;
-    private final static char[][] tablero = new char[DIMENSION][DIMENSION];
+    public final static char[][] tablero = new char[DIMENSION][DIMENSION];
 
     /**
      * Prints the rules of all games
@@ -49,7 +51,7 @@ public class GameMechanics {
      * @param msg  Personalized message to be printed
      * @param mark Mark that is going to be placed
      */
-    public static void placeToe(String msg, char mark) {
+    public static boolean placeToe(String msg, char mark, boolean mines) {
         boolean error = false;
 
         System.out.print(msg);
@@ -58,7 +60,7 @@ public class GameMechanics {
         do {
             // If this line is executed, an error has been occurred
             if (error)
-                System.out.print("Nueva posicion --> ");
+                System.out.print("New position --> ");
             error = false;
 
             // Catch possible errors
@@ -67,10 +69,15 @@ public class GameMechanics {
                 int row = Integer.parseInt(res[0]) - 1;
                 int col = Integer.parseInt(res[1]) - 1;
 
+                if (mines && tablero[row][col] == '\\'){
+                    System.out.println("It's a mine, you lost!");
+                    return true;
+                }
+
                 // Error if the position is taken
                 if (tablero[row][col] != ' ') {
                     error = true;
-                    System.out.println("Posicion ya marcada");
+                    System.out.println("Already marked position");
                     // Jumps the toe placing
                     continue;
                 }
@@ -80,16 +87,18 @@ public class GameMechanics {
 
                 // Catch the possible input mismatch
             } catch (InputMismatchException i) {
-                System.out.println("Entrada no válida");
+                System.out.println("Invalid input");
                 error = true;
 
                 // Catch the possible out of bounds
             } catch (ArrayIndexOutOfBoundsException a) {
-                System.out.println("Posición no válida");
+                System.out.println("Invalid position");
                 error = true;
             }
 
         } while (error);
+
+        return false;
     }
 
     /**
@@ -169,9 +178,20 @@ public class GameMechanics {
 
     }
 
-    public static boolean checkMine(int position) {
-        // TODO
-        return true;
+    /**
+     * Places \ character on random positions of tablero. DIMENSION-2 mines are placed
+     */
+    public static void placeMines() {
+        int count = 0;
+        while (count < DIMENSION - 2) {
+            int r = gen.nextInt(DIMENSION);
+            int c = gen.nextInt(DIMENSION);
+
+            if (tablero[r][c] == ' ') {
+                tablero[r][c] = '\\';
+                count++;
+            }
+        }
     }
 
 }
