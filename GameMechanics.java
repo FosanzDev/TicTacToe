@@ -178,13 +178,20 @@ public class GameMechanics {
 
     }
 
+    /**
+     * Places \ character on random positions of tablero. DIMENSION-2 mines are placed
+     */
     public static void placeMines() {
-        //Placing mines in random sites
-        //DIMENSION-2 mines are placed
-        for(int i=0; i<DIMENSION-2; i++){
-            GameMechanics.placeToe(gen.nextInt(DIMENSION), gen.nextInt(DIMENSION), '\\');
-        }
+        int count = 0;
+        while (count < DIMENSION - 2) {
+            int r = gen.nextInt(DIMENSION);
+            int c = gen.nextInt(DIMENSION);
 
+            if (tablero[r][c] == ' ') {
+                tablero[r][c] = '\\';
+                count++;
+            }
+        }
     }
 
 }

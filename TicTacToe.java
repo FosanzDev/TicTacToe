@@ -17,6 +17,7 @@ public class TicTacToe {
 
             if(mines){
                 GameMechanics.placeMines();
+                //GameMechanics.placeWarnings();
             }
 
             // While no-one has won...
