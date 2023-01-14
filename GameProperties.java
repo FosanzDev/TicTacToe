@@ -6,9 +6,11 @@ public class GameProperties {
     public static void gameProperties() {
         while (true) {
 
-            System.out.println("GAME PROPERTIES");
+            System.out.println();
+            System.out.println("GAME PROPERTIES:");
             System.out.println("1. Change dimension");
             System.out.println("0. Exit");
+            System.out.println();
 
             int opt = Utils.readInt("Select your option: ");
 
