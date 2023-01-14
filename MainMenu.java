@@ -12,10 +12,10 @@ public class MainMenu {
         System.out.println("Loading data...");
 
         //Player selection
-        Player.importPlayers();
-        Player.printPlayers();
-        player1 = Player.selectPlayer("Select Player 1: ");
-        player2 = Player.selectPlayer("Select Player 2: ");
+        PlayerManager.importPlayers();
+        PlayerManager.printPlayers();
+        player1 = PlayerManager.selectPlayer("Select Player 1: ");
+        player2 = PlayerManager.selectPlayer("Select Player 2: ");
 
         //Program Started, will continue printing menu and reading options until exit instruction
         while (true) {

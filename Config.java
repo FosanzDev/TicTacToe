@@ -26,16 +26,16 @@ public class Config {
 
             switch (opt) {
                 case 1:
-                    Player.addPlayer();
+                    PlayerManager.addPlayer();
                     break;
                 case 2:
-                    Player.deletePlayer();
+                    PlayerManager.deletePlayer();
                     break;
                 case 3:
-                    Player.modifyPlayer();
+                    PlayerManager.modifyPlayer();
                     break;
                 case 4:
-                    Player.printPlayers();
+                    PlayerManager.printPlayers();
                     //Press enter to continue
                     System.out.println("Press enter to continue...");
                     lector.nextLine();
@@ -46,9 +46,9 @@ public class Config {
                     System.out.println("Player 1: " + MainMenu.player1.getName());
                     System.out.println("Player 2: " + MainMenu.player2.getName());
                     System.out.println("-------------------");
-                    Player.printPlayers();
-                    MainMenu.player1 = Player.selectPlayer("Select new player 1: ");
-                    MainMenu.player2 = Player.selectPlayer("Select new player 2: ");
+                    PlayerManager.printPlayers();
+                    MainMenu.player1 = PlayerManager.selectPlayer("Select new player 1: ");
+                    MainMenu.player2 = PlayerManager.selectPlayer("Select new player 2: ");
                     break;
                     
                     
@@ -57,7 +57,7 @@ public class Config {
             }
             
             System.out.println("Saving data...");
-            Player.exportPlayers();
+            PlayerManager.exportPlayers();
 
         }
 
