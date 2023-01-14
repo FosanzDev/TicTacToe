@@ -3,7 +3,6 @@ import java.nio.file.FileSystems;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class PlayerManager {
 
     private static final ArrayList<Player> players = new ArrayList<Player>();
@@ -11,6 +10,7 @@ public class PlayerManager {
 
     /**
      * Prints the players list and waits the user to select one
+     * 
      * @returns selected player
      */
     public static Player selectPlayer(String msg) {
@@ -45,7 +45,7 @@ public class PlayerManager {
     public static void printPlayers() {
         System.out.println("--------------------");
         System.out.println("Players: ");
-        for (int i = 0; i < players.size(); i++) 
+        for (int i = 0; i < players.size(); i++)
             System.out.println(i + ". " + players.get(i).getName() + "|| Mark: " + players.get(i).getMark());
         System.out.println("--------------------");
         System.out.println();
@@ -64,11 +64,11 @@ public class PlayerManager {
         char mark = lector.nextLine().charAt(0);
         players.add(new Player(name, mark, 0));
     }
-    
+
     /**
      * Edits a player with user input
      */
-    public static void modifyPlayer(){
+    public static void modifyPlayer() {
         printPlayers();
         Player p = selectPlayer("Select the player to modify: ");
         System.out.println("Current name: " + p.getName());
@@ -87,16 +87,17 @@ public class PlayerManager {
     public static void deletePlayer() {
         printPlayers();
         players.remove(selectPlayer("Select the player to delete: "));
-    
+
     }
 
     /**
      * Deletes the config file and writes a new one with the current players list
      */
-    public static void exportPlayers(){
+    public static void exportPlayers() {
         try {
             java.nio.file.Files.delete(FileSystems.getDefault().getPath("data", "config.txt"));
-            java.io.PrintWriter config = new java.io.PrintWriter(FileSystems.getDefault().getPath("data", "config.txt").toFile());
+            java.io.PrintWriter config = new java.io.PrintWriter(
+                    FileSystems.getDefault().getPath("data", "config.txt").toFile());
             config.print("name mark victories");
             for (Player p : players) {
                 config.println();

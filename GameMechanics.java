@@ -3,12 +3,13 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Random;
 
-public class GameMechanics {
+//GameMechanics inherits from GameProperties to access the board
+public class GameMechanics extends GameProperties {
 
     public final static Random gen = new Random();
     public final static Scanner lector = MainMenu.lector;
-    public final static int DIMENSION = 3;
-    public final static char[][] tablero = new char[DIMENSION][DIMENSION];
+
+    private static int toeCount = 0;
 
     /**
      * Prints the rules of all games
@@ -27,10 +28,11 @@ public class GameMechanics {
     /**
      * Clears the board
      */
-    public static void newGame() {
+    public static void initialize() {
         for (char[] a : tablero) {
             Arrays.fill(a, ' ');
         }
+        toeCount = 0;
     }
 
     /**
@@ -53,6 +55,7 @@ public class GameMechanics {
      */
     public static boolean placeToe(String msg, char mark, boolean mines) {
         boolean error = false;
+        toeCount++;
 
         System.out.print(msg);
 
@@ -69,7 +72,7 @@ public class GameMechanics {
                 int row = Integer.parseInt(res[0]) - 1;
                 int col = Integer.parseInt(res[1]) - 1;
 
-                if (mines && tablero[row][col] == '\\'){
+                if (mines && tablero[row][col] == '\\') {
                     System.out.println("It's a mine, you lost!");
                     return true;
                 }
@@ -179,7 +182,15 @@ public class GameMechanics {
     }
 
     /**
-     * Places \ character on random positions of tablero. DIMENSION-2 mines are placed
+     * Checks if the board is full
+     */
+    public static boolean checkDraft() {
+        return toeCount == DIMENSION * DIMENSION;
+    }
+
+    /**
+     * Places \ character on random positions of tablero. DIMENSION-2 mines are
+     * placed
      */
     public static void placeMines() {
         int count = 0;

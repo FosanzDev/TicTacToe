@@ -69,6 +69,7 @@ public class Utils {
 
     /**
      * Reads and returns a true/false user statement
+     * 
      * @param msj Personalized request message
      * @return boolean with the user selection
      */

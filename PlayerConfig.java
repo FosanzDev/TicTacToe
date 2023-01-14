@@ -1,14 +1,14 @@
 import java.util.Scanner;
 
-public class Config {
+public class PlayerConfig {
 
     private final static Scanner lector = MainMenu.lector;
 
-    public static void configMenu() {
+    public static void playerConfig() {
 
         while (true) {
             System.out.println();
-            System.out.println("CONFIG MENU:");
+            System.out.println("PLAYER CONFIG:");
             System.out.println("1. Add player");
             System.out.println("2. Remove player");
             System.out.println("3. Edit player");
@@ -17,12 +17,6 @@ public class Config {
             System.out.println("0. Exit");
 
             int opt = Utils.readInt("Select your option: ");
-
-            //Exit option
-            if (opt == 0) {
-                System.out.println("Exiting config menu...");
-                return;
-            }
 
             switch (opt) {
                 case 1:
@@ -36,7 +30,7 @@ public class Config {
                     break;
                 case 4:
                     PlayerManager.printPlayers();
-                    //Press enter to continue
+                    // Press enter to continue
                     System.out.println("Press enter to continue...");
                     lector.nextLine();
                     break;
@@ -50,12 +44,15 @@ public class Config {
                     MainMenu.player1 = PlayerManager.selectPlayer("Select new player 1: ");
                     MainMenu.player2 = PlayerManager.selectPlayer("Select new player 2: ");
                     break;
-                    
-                    
+
+                case 0:
+                    System.out.println("Exiting config menu...");
+                    return;
+
                 default:
                     System.out.println("Not a valid option!");
             }
-            
+
             System.out.println("Saving data...");
             PlayerManager.exportPlayers();
 

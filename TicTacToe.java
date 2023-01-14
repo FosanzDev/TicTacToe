@@ -1,12 +1,11 @@
 public class TicTacToe {
     // Initialize variables
-    private final static int DIMENSION = GameMechanics.DIMENSION;
     public static int toeCount = 0;
 
     public static void tictactoe(Player p1, Player p2, boolean mines) {
 
         boolean continues;
-        GameMechanics.newGame();
+        GameMechanics.initialize();
 
         // Do this while the players want to continue playing
         do {
@@ -15,9 +14,9 @@ public class TicTacToe {
             boolean mine = false;
             Player turn = p2;
 
-            if(mines){
+            if (mines) {
                 GameMechanics.placeMines();
-                //GameMechanics.placeWarnings();
+                // GameMechanics.placeWarnings();
             }
 
             // While no-one has won...
@@ -28,10 +27,10 @@ public class TicTacToe {
 
                 // User request + toe placing
                 mine = GameMechanics.placeToe("\nInput desired position: (row/column): ", turn.getMark(), mines);
-                
-                if (mine){
+
+                if (mine) {
                     win = true;
-                    turn = turn == p1 ? p2:p1;
+                    turn = turn == p1 ? p2 : p1;
                     break;
                 }
 
@@ -41,7 +40,7 @@ public class TicTacToe {
                 win = GameMechanics.checkWin(turn.getMark());
 
                 // Checks if it is a draft
-                if (toeCount == DIMENSION * DIMENSION)
+                if (GameMechanics.checkDraft())
                     break;
             }
 
@@ -57,7 +56,7 @@ public class TicTacToe {
 
             // Reset board
             toeCount = 0;
-            GameMechanics.newGame();
+            GameMechanics.initialize();
 
             // Ask players if they want to continue
             continues = Utils.readOption("Continue playing?(y/n): ");
