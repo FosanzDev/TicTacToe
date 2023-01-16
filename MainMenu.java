@@ -17,6 +17,9 @@ public class MainMenu {
         player1 = PlayerManager.selectPlayer("Select Player 1: ");
         player2 = PlayerManager.selectPlayer("Select Player 2: ");
 
+        //Board initialization
+        GameMechanics.initialize();
+
         // Program Started, will continue printing menu and reading options until exit
         // instruction
         while (true) {

@@ -1,6 +1,4 @@
 public class TicTacToe {
-    // Initialize variables
-    public static int toeCount = 0;
 
     public static void tictactoe(Player p1, Player p2, boolean mines) {
 
@@ -17,12 +15,13 @@ public class TicTacToe {
             if (mines) {
                 GameMechanics.placeMines();
                 // GameMechanics.placeWarnings();
+
             }
 
             // While no-one has won...
             while (!win) {
                 // Print the board and change the
-                GameMechanics.printBoard();
+                GameMechanics.printBoard(false);
                 turn = turn == p1 ? p2 : p1;
 
                 // User request + toe placing
@@ -34,8 +33,6 @@ public class TicTacToe {
                     break;
                 }
 
-                // Draft counter increases per toe placed
-                toeCount++;
                 // Checks if the toe placed made a winning pattern
                 win = GameMechanics.checkWin(turn.getMark());
 
@@ -45,7 +42,7 @@ public class TicTacToe {
             }
 
             // Print the final board
-            GameMechanics.printBoard();
+            GameMechanics.printBoard(true);
 
             // Prints wether the game was ended by draft or win
             if (win)
@@ -54,8 +51,6 @@ public class TicTacToe {
             else
                 System.out.println("Es un empate!");
 
-            // Reset board
-            toeCount = 0;
             GameMechanics.initialize();
 
             // Ask players if they want to continue

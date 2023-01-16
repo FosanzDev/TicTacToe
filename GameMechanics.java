@@ -72,7 +72,7 @@ public class GameMechanics extends GameProperties {
                 int row = Integer.parseInt(res[0]) - 1;
                 int col = Integer.parseInt(res[1]) - 1;
 
-                if (mines && tablero[row][col] == '\\') {
+                if (mines && tablero[row][col] == 'M') {
                     System.out.println("It's a mine, you lost!");
                     return true;
                 }
@@ -89,7 +89,7 @@ public class GameMechanics extends GameProperties {
                 placeToe(row, col, mark);
 
                 // Catch the possible input mismatch
-            } catch (InputMismatchException i) {
+            } catch (InputMismatchException | NumberFormatException e) {
                 System.out.println("Invalid input");
                 error = true;
 
@@ -107,13 +107,13 @@ public class GameMechanics extends GameProperties {
     /**
      * Prints actual Board
      */
-    public static void printBoard() {
+    public static void printBoard(boolean showMines) {
         System.out.println(Utils.multiplyString(" _", DIMENSION));
         for (char[] r : tablero) {
             System.out.print("|");
             for (char c : r) {
-                // \ character responds to mines. Don't print them
-                if (c == '\\')
+                // M character responds to mines. Don't print them
+                if (c == 'M' && !showMines)
                     c = ' ';
                 System.out.printf("\033[4m%c\033[0m|", c);
             }
@@ -193,14 +193,13 @@ public class GameMechanics extends GameProperties {
      * placed
      */
     public static void placeMines() {
-        int count = 0;
-        while (count < DIMENSION - 2) {
+        for(int i=0; i<DIMENSION-2; i++){
             int r = gen.nextInt(DIMENSION);
             int c = gen.nextInt(DIMENSION);
 
             if (tablero[r][c] == ' ') {
-                tablero[r][c] = '\\';
-                count++;
+                tablero[r][c] = 'M';
+
             }
         }
     }

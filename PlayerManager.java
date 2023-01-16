@@ -28,7 +28,7 @@ public class PlayerManager {
      */
     public static void importPlayers() {
         try {
-            Scanner config = new Scanner(FileSystems.getDefault().getPath("data", "config.txt"));
+            Scanner config = new Scanner(FileSystems.getDefault().getPath("data", "players.txt"));
             config.nextLine();
             while (config.hasNextLine()) {
                 players.add(new Player(config.next(), config.next().charAt(0), config.nextInt()));
@@ -95,9 +95,9 @@ public class PlayerManager {
      */
     public static void exportPlayers() {
         try {
-            java.nio.file.Files.delete(FileSystems.getDefault().getPath("data", "config.txt"));
+            java.nio.file.Files.delete(FileSystems.getDefault().getPath("data", "players.txt"));
             java.io.PrintWriter config = new java.io.PrintWriter(
-                    FileSystems.getDefault().getPath("data", "config.txt").toFile());
+                    FileSystems.getDefault().getPath("data", "players.txt").toFile());
             config.print("name mark victories");
             for (Player p : players) {
                 config.println();
