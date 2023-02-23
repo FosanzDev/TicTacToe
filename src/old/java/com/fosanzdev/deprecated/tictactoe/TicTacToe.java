@@ -1,3 +1,5 @@
+package com.fosanzdev.deprecated.tictactoe;
+
 public class TicTacToe {
 
     public static void tictactoe(Player p1, Player p2, boolean mines) {

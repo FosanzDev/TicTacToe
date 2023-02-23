@@ -1,3 +1,5 @@
+package com.fosanzdev.deprecated.tictactoe;
+
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;

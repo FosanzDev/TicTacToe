@@ -1,3 +1,5 @@
+package com.fosanzdev.deprecated.tictactoe;
+
 public class TacToeGames {
 
     public static Player tactoegame(Player p1, Player p2, boolean mines){

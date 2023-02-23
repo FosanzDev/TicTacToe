@@ -1,3 +1,5 @@
+package com.fosanzdev.deprecated.tictactoe;
+
 import java.util.Random;
 
 public class AntiTacToe extends GameProperties {

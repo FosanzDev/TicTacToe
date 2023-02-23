@@ -1,3 +1,5 @@
+package com.fosanzdev.deprecated.tictactoe;
+
 public class GameProperties {
 
     public static int DIMENSION = 3;

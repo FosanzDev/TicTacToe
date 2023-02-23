@@ -1,3 +1,5 @@
+package com.fosanzdev.deprecated.tictactoe;
+
 import java.util.Scanner;
 
 public class MainMenu {

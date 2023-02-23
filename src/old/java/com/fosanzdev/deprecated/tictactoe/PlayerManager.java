@@ -1,3 +1,5 @@
+package com.fosanzdev.deprecated.tictactoe;
+
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.util.ArrayList;

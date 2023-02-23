@@ -1,3 +1,4 @@
+package com.fosanzdev.deprecated.tictactoe;
 
 public class Player {
     private final String name;
