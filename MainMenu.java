@@ -26,7 +26,7 @@ public class MainMenu {
             System.out.println();
             System.out.println("MODE MENU:");
             System.out.println("1. TicTacToe");
-            // System.out.println("2. Minesweeper");
+            System.out.println("2. AntiTacToe");
             System.out.println("3. MineTacToe");
             System.out.println("4. Show rules");
             System.out.println("5. Player config");
@@ -45,14 +45,18 @@ public class MainMenu {
             // Starting the games
             switch (opt) {
                 case 1:
+                    GameMechanics.initialize();
                     TicTacToe.tictactoe(player1, player2, false);
                     break;
 
                 case 2:
+                    AntiTacToe.antitactoe(player2, player1);
                     break;
 
                 case 3:
+                    GameMechanics.initialize();
                     TicTacToe.tictactoe(player1, player2, true);
+                    
 
                 case 4:
                     System.out.println(GameMechanics.rules);

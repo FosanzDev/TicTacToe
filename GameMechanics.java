@@ -121,14 +121,15 @@ public class GameMechanics extends GameProperties {
         }
 
     }
-
+    
     /**
      * Checks if <code>ficha</code> wins
      * 
      * @param ficha char with the selected value
+     * @param length length of the winning sequence
      * @return true/false depending if <code>ficha</code> has won
      */
-    public static boolean checkWin(char ficha) {
+    public static boolean checkWin(char ficha, int length) {
         int count = 0;
 
         // Check Lines
@@ -137,10 +138,17 @@ public class GameMechanics extends GameProperties {
             for (int c = 0; c < DIMENSION; c++) {
                 char usr = tablero[r][c];
 
-                if (usr == ficha)
+                if (usr == ficha){
                     count++;
+                    if (count >= length)
+                    return true;
+                }
+                
+                else
+                    count = 0;
             }
-            if (count == DIMENSION)
+
+            if (count >= length)
                 return true;
 
             count = 0;
@@ -152,12 +160,15 @@ public class GameMechanics extends GameProperties {
             for (int r = 0; r < DIMENSION; r++) {
                 char usr = tablero[r][c];
 
-                if (usr == ficha)
+                if (usr == ficha){
                     count++;
-            }
+                    if (count >= length)
+                    return true;
+                }        
 
-            if (count == DIMENSION)
-                return true;
+                else
+                    count = 0;
+            }
 
             count = 0;
         }
@@ -169,22 +180,34 @@ public class GameMechanics extends GameProperties {
 
         for (int i = 0; i < DIMENSION; i++) {
             // Checking Top-Left to Bottom-Right
-            if (tablero[i][i] == ficha)
+            if (tablero[i][i] == ficha){
                 countDiag1++;
+                if (countDiag1 >= length)
+                return true;
+            }
+            
+            else
+                countDiag1 = 0;
 
             // Checking Top-Right to Bottom-Left
-            if (tablero[i][DIMENSION - i - 1] == ficha)
+            if (tablero[i][DIMENSION - i - 1] == ficha){
                 countDiag2++;
+                if (countDiag2 >= length)
+                return true;
+            }
+            
+            else 
+                countDiag2 = 0;
         }
 
-        return countDiag1 == DIMENSION || countDiag2 == DIMENSION;
+        return false;
 
     }
 
     /**
      * Checks if the board is full
      */
-    public static boolean checkDraft() {
+    public static boolean checkDraw() {
         return toeCount == DIMENSION * DIMENSION;
     }
 
